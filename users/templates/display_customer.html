@@ -1,0 +1,46 @@
+{% extends 'user_base.html' %}
+{% block content %}
+
+<div class="mb-10 text-3xl font-semibold text-center">
+    <h1>Display Customer</h1>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Customer Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone Number
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Creation Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in my_customer %}
+            <tr class="text-black">
+               <td class="px-6 py-4"><a href="/cosmic/display_customer_profile/{{customer.customer_name}}">{{ customer.customer_name }}</a></td>
+              <td class="px-6 py-4"><a href="#">{{ customer.phone_number }}</a></td>
+              <td class="px-6 py-4"><a href="#" >{{ customer.email }}</a></td>
+              <td class="px-6 py-4"><a href="#">{{ customer.date }}</a></td>
+              <td class="px-6 py-4"><button type="submit" class="btn btn-danger delete-link" onclick="return confirm('Are you sure?');" data-order-id="{{ customer.customer_name }} ">Delete</button></td>
+             
+            </tr>
+            {% endfor %}       
+            
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
