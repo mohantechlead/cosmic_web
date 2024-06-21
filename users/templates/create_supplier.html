@@ -4,24 +4,24 @@
 
 
 
-<form class="w-full max-w-3xl" method="post" action="{% url 'create_customer' %}" id="form">
+<form class="w-full max-w-3xl" method="post" action="{% url 'create_supplier' %}" id="form">
     <div class="mb-10 text-3xl font-semibold text-center">
-        <h1>Create Customer</h1>
+        <h1>Create Supplier</h1>
     </div>
     {% csrf_token %}
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Customer Name
+          Supplier Name
         </label>
-        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="customer_name" id="customer_name">
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="supplier_name" autocomplete="off">
         <!-- <span class="text-red-500 text-xs italic">Please fill out this field.</span> -->
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Email Address
         </label>
-        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="email">
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="email" autocomplete="off">
       </div>
     </div>
 
@@ -30,30 +30,30 @@
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
            Phone Number
           </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="phone_number">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="phone_number" autocomplete="off">
           <!-- <span class="text-red-500 text-xs italic">Please fill out this field.</span> -->
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Contact Person
           </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="contact_person">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="contact_person" autocomplete="off">
         </div>
       </div>
 
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-            Customer Address 
+            Supplier Address 
           </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="customer_address">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="supplier_address" autocomplete="off">
           <!-- <span class="text-red-500 text-xs italic">Please fill out this field.</span> -->
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Comments
           </label>
-          <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="comments">
+          <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="comments" autocomplete="off">
             </textarea>
         </div>
       </div>
@@ -63,12 +63,9 @@
             Create
           </button>
       </div>
-  </form>
 
-  <script>
-    $("#customer_name").change(function () {
-      console.log( $(this).val() );
-    });
-  </script>
+     
+  
+  </form>
 
 {% endblock %}
