@@ -47,10 +47,10 @@
               </a>
               <div x-cloak x-show="isOpen" @click.outside="isOpen = false">
              
-                  <a href="create_customer" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <a href="{% url 'create_customer' %}" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                      <span class="flex-1 ms-3 whitespace-nowrap">Create Customer</span></a>
                  
-                  <a href="display_customer" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <a href="{% url 'display_customer' %}" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                      <span class="flex-1 ms-3 whitespace-nowrap">Display Customer</span></a>
               </div>
               
@@ -62,20 +62,29 @@
                </a>
                <div x-cloak x-show="isOpen">
               
-                   <a href="create_supplier" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                   <a href="{% url 'create_supplier' %}" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                       <span class="flex-1 ms-3 whitespace-nowrap">Create Supplier</span></a>
                   
-                   <a href="display_supplier" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                   <a href="{% url 'display_supplier' %}" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                       <span class="flex-1 ms-3 whitespace-nowrap">Display Supplier</span></a>
                </div>
                
              </ul>
-           <li>
-              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                 
-                 <span class="flex-1 ms-3 whitespace-nowrap">Sales</span>
-              </a>
-           </li>
+             <ul x-data="{isOpen:false}" @click="isOpen = ! isOpen">
+               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" >
+                  
+                  <span class="flex-1 ms-3 whitespace-nowrap" >Sales</span>
+               </a>
+               <div x-cloak x-show="isOpen">
+              
+                   <a href="{% url 'create_sales' %}" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                      <span class="flex-1 ms-3 whitespace-nowrap">Create Sales</span></a>
+                  
+                   <a href="display_supplier" class="flex items-center pl-8 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                      <span class="flex-1 ms-3 whitespace-nowrap">Display Sales</span></a>
+               </div>
+               
+             </ul>
            <li>
               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 
