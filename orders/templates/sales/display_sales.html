@@ -1,0 +1,79 @@
+{% extends 'user_base.html' %}
+{% block content %}
+
+<div class="mb-10 text-3xl font-semibold text-center">
+    <h1>Display Sales</h1>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Order Number
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Items
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Unit Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Total Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Customer Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in my_order %}
+            <tr class="text-black">
+               <td class="px-6 py-4"><a href="{% url 'display_single_sale' order.order_no %} ">{{order.order_no}}</a></td>
+              <td class="px-6 py-4">{{ order.date }}</td>
+              <td class="px-6 py-4">
+                {% for item in order.order_items.all %}
+                {{ item.item_name }}
+                {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}</td>
+              <td class="px-6 py-4">
+                {% for item in order.order_items.all %}
+                {{ item.quantity }}
+                {% if not forloop.last %}<br>
+                {% endif %}
+                {% endfor %}</td>
+                <td class="px-6 py-4">
+                    {% for item in order.order_items.all %}
+                        {{ item.price }}
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+                </td class="px-6 py-4">
+                    <td class="px-6 py-4">
+                      {% for item in order.order_items.all %}
+                      {{ item.before_vat }}
+                      {% if not forloop.last %}<br>{% endif %}
+                  {% endfor %}</td>
+                    
+                    <td class="px-6 py-4">{{ order.customer_name.customer_name }}</td>
+                    <td class="px-6 py-4">{{ order.status }}</td>
+             
+            </tr>
+            {% endfor %}       
+            
+        </tbody>
+    </table>
+
+    
+</div>
+
+
+{% endblock %}

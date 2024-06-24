@@ -14,7 +14,7 @@ class customer_profile(models.Model):
     
 
 class supplier_profile(models.Model):
-    supplier_name = models.TextField(primary_key=False)
+    supplier_name = models.TextField(primary_key=True, blank=False)
     supplier_address = models.TextField(blank=False)
     contact_person = models.TextField(blank=True)
     phone_number = models.CharField(blank=False, null=True) 

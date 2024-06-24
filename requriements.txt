@@ -1,0 +1,7 @@
+asgiref==3.8.1
+Django==5.0.6
+docopt==0.6.2
+num2words==0.5.13
+psycopg2==2.9.9
+sqlparse==0.5.0
+tzdata==2024.1

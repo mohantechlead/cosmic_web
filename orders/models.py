@@ -1,6 +1,7 @@
 from django.db import models
 from users.forms import *
 from users.models import *
+import uuid
 
 class cosmic_order(models.Model):
     customer_name = models.ForeignKey('users.customer_profile', related_name='orders_related_to_customer',on_delete=models.CASCADE, db_column='customer_name',blank=False, null=True)
@@ -37,5 +38,16 @@ class order_item(models.Model):
     before_vat = models.FloatField(blank=True, null=True)
     quantity =  models.FloatField(blank=True, null=True)
     measurement = models.TextField(blank=True, null=True)
+
+
+class item_codes(models.Model):
+    hs_code = models.TextField(blank=True, null=True)
+    item_name = models.TextField(blank=True, null=True)
+    new_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    def __str__(self):
+        return self.item_name
+    
+
 
 

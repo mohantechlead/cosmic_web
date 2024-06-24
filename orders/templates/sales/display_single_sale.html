@@ -1,0 +1,99 @@
+{% extends 'user_base.html' %}
+{% block content %}
+
+<div class="w-full max-w-7xl grid">
+
+<div class="mb-10 text-3xl font-semibold text-center">
+    <h1>Order Detail</h1>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Order Number
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Total Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Vendor Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr class="text-black">
+               <td class="px-6 py-4"><a href="" data-order-id="{{ my_order.order_no }}">{{my_order.order_no}}</a></td>
+              <td class="px-6 py-4">{{ my_order.date }}</td>
+              <td class="px-6 py-4">
+                {% for item in my_order.order_items.all %}
+                {{ item.before_vat }}
+              {% if not forloop.last %}<br>{% endif %}
+          {% endfor %}</td>
+                    
+                    <td class="px-6 py-4">{{ my_order.customer_name.customer_name }}</td>
+                    <td class="px-6 py-4">{{ my_order.status }}</td>
+                <td>
+                    <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Edit Order
+                    </button>
+                </td>
+            </tr>
+            
+                
+            
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-10 ml-8 flex">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6"  onclick="redirectToPrintOrder('{{ my_order.order_no }}')">
+        Proforma Invoice
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+        Commercial Invoice
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+        Bill of Lading
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+        Truck Waybill
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+        Packing List
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+        Add Shipping Details
+    </button>
+</div>
+
+</div>
+
+<script>
+    
+
+    const orderID = document.getElementById("data-order-id");
+
+    function redirectToPrintOrder(orderID) {
+    window.location.href = `pr_invoice?order_no=${orderID}`;
+    // window.location.href = `{% url 'pr_invoice' orderID %}`;
+  }
+
+</script>
+{% endblock %}

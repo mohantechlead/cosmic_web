@@ -17,18 +17,32 @@ class OrderItemForm(forms.ModelForm):
     before_vat = forms.DecimalField(
         label='Total Price',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'before_vat form-control', 'readonly': 'readonly'})
+        widget=forms.TextInput(attrs={'class': 'before_vat form-control'})
     )
     measurement = forms.CharField(widget=forms.TextInput(attrs={'class': 'measurement form-control'}), required=False)
     quantity = forms.FloatField(widget=forms.TextInput(attrs={'class': 'quantity form-control' }))
     price = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'price form-control'}))
 
-    item_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter name'}),
+    item_name = forms.ModelChoiceField(
+        queryset=item_codes.objects.all(),
+        empty_label="Item Name", 
+        widget=forms.Select(attrs={'class': 'item_name form-control'}),
+        to_field_name='item_name'
     )
+    hs_code = forms.CharField(label='HS CODE', required=False, widget=forms.TextInput(attrs={'class': 'hs_codes form-control'}, ),  )
     
     
     class Meta:
    
         model = order_item
-        fields = [ 'item_name','price','quantity','before_vat','measurement']
+        fields = [ 'item_name','hs_code','price','quantity','before_vat','measurement']
+
+class CosmicItemForm(forms.ModelForm):
+    
+    item_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'item_name form-control'}))
+    hs_code = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'hs_code form-control'}))
+    
+    class Meta:
+   
+        model = item_codes
+        fields = ['item_name','hs_code']

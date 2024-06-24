@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(order_item)
 admin.site.register(cosmic_order)
+admin.site.register(item_codes)
