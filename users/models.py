@@ -8,6 +8,10 @@ class customer_profile(models.Model):
     email = models.TextField(blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True, blank=True)
+    
+    def __str__(self):
+        return self.customer_name
+    
 
 class supplier_profile(models.Model):
     supplier_name = models.TextField(primary_key=False)
@@ -17,3 +21,6 @@ class supplier_profile(models.Model):
     email = models.TextField(blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    
+    def __str__(self):
+        return self.supplier_name

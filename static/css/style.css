@@ -1,10 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#form-lists label{
+    display: block; 
+    margin-bottom: 0.2rem; 
+    color: #111827; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 500; 
+}
 
-@layer components {
-    .logo_name{
-        @apply flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group
-    }
-  }
+#form-lists input{
+    display: block; 
+    padding: 0.5rem; 
+    margin-bottom: 0.2rem; 
+    background-color: #F9FAFB; 
+    color: #111827; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 500; 
+    width: 100%; 
+    border-radius: 0.5rem; 
+    border-width: 1px; 
+    border-color: #D1D5DB; 
+}
 
+/* #form-lists {
+    overflow: hidden; 
+    padding-top: 1rem;
+    padding-bottom: 1rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    margin-bottom: 2rem; 
+    border-radius: 0.25rem; 
+    max-width: 24rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+} */
