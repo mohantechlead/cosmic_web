@@ -1,8 +1,56 @@
 {% extends 'user_base.html' %}
 {% block content %}
 
-<div class="max-w-210mm">
+<div class="max-w-5xl container mx-auto">
+    <div class="flex-col">
+    <div class="w-12 m-2 hero container mx-auto flex justify-center">
+        <img src="../../../static/images/logo.jpg" class="rounded-full" alt="logo">
+    </div>
+    <div>
+        <h3 class="text-xl m-4 text-center font-bold">Cosmic Connection FZE</h3>
+        <p class="text-center font-normal">Free Zone, Djibouti <br/>
+        Email: tanirna@gmail.com <br/>
+        TEL.+253-77 81 55 70</p>
+    </div>
+    <h3 class="text-xl m-6 text-center font-semibold" >Proforma Invoice</h3>
+</div>
+    <div>
+        <div class="grid gap-4 mb-8 md:grid-cols-3">
+        <div>
+            <h4 class="text-lg font-semibold">Seller Details</h4>
+            <div class="">
+                <p class="ml-2">{{my_order.supplier_name.supplier_name}} <br>
+                    {{my_order.supplier_name.supplier_address}}</p>
+            </div>                
+        </div>
 
+        <div>
+            <h5 class="text-lg font-semibold">Order No:</h5>
+            <p class="ml-2">{{my_order.order_no}}</p>
+
+            <h5 class="text-lg font-semibold">Invoice Date:</h5>
+            <p class="ml-2">{{my_order.date}}</p>
+        </div>
+
+        <div>
+            <h5 class="text-lg font-semibold">Proforma Invoice No:</h5>
+            <p class="ml-2"> {{my_order.ref_no}}</p>
+
+            <h5 class="text-lg font-semibold">Freight</h5>
+            <p class="ml-2">{{my_order.freight}}</p>
+        </div>
+
+    </div>
+
+    <div class="grid gap-4 mb-8 md:grid-cols-3">
+        <div>
+            <h4 class="text-lg font-semibold">Buyer Details</h4>
+            <p class="ml-2">{{my_order.customer_name.customer_name}} <br>
+                                {{my_order.customer_name.customer_address}}</p>               
+        </div>
+    </div>
+    </div>
+    
 </div>
 
 {% endblock %}

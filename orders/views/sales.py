@@ -4,7 +4,7 @@ from django.http import JsonResponse,HttpResponse
 from django.forms import formset_factory
 from orders.forms import *
 from users.forms import *
-import num2words
+from num2words import num2words
 
 def create_sales(request):
     if request.method == 'POST':
@@ -246,3 +246,4 @@ def pr_invoice(request):
                     }
        
     return render(request, 'sales/pr_invoice.html', context)
+

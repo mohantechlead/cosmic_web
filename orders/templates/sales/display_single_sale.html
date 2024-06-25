@@ -91,8 +91,8 @@
     const orderID = document.getElementById("data-order-id");
 
     function redirectToPrintOrder(orderID) {
-    window.location.href = `pr_invoice?order_no=${orderID}`;
-    // window.location.href = `{% url 'pr_invoice' orderID %}`;
+    window.location.href = `/orders/pr_invoice?order_no=${orderID}`;
+    
   }
 
 </script>
