@@ -9,4 +9,6 @@ urlpatterns = [
     path('display_items', items.display_items, name='display_items'),
     path('pr_invoice', sales.pr_invoice, name='pr_invoice'),
     path('get_item_data/<str:item_id>/', get_item_data, name='get_item_data'),
+    path('pdf_view', print_pdf.ViewPDF, name="pdf_view"),
+    path('pdf_download', print_pdf.DownloadPDF.as_view(), name="pdf_download"),
 ]

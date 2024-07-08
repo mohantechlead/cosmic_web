@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from users.models import *
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse
 from django.forms import formset_factory
 from orders.forms import *
 from users.forms import *

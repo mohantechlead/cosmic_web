@@ -62,11 +62,11 @@
         Proforma Invoice
     </button>
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6"  onclick="redirectToCommercialOrder('{{ my_order.order_no }}')">
         Commercial Invoice
     </button>
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-6" >
         Bill of Lading
     </button>
 
@@ -91,7 +91,11 @@
     const orderID = document.getElementById("data-order-id");
 
     function redirectToPrintOrder(orderID) {
-    window.location.href = `/orders/pr_invoice?order_no=${orderID}`;
+    window.location.href = `/orders/pr_invoice?order_no=${orderID}`; 
+  }
+
+  function redirectToCommercialOrder(orderID) {
+    window.location.href = `/orders/pdf_view?order_no=${orderID}`;
     
   }
 
