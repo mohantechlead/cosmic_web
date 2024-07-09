@@ -4,7 +4,7 @@
 
 
 
-<form class="w-full max-w-3xl" method="post" action="{% url 'create_customer' %}" id="form">
+<form class="w-full max-w-3xl" method="post"  id="form">
     <div class="mb-10 text-3xl font-semibold text-center">
         <h1>Create Customer</h1>
     </div>
@@ -59,16 +59,55 @@
       </div>
 
       <div class="text-center">
-        <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-64" >
+        <button  id="submit" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-64" >
             Create
           </button>
       </div>
   </form>
 
+  <!-- action="{% url 'create_customer' %}" -->
   <script>
     $("#customer_name").change(function () {
       console.log( $(this).val() );
     });
   </script>
+
+  <!-- <script type="text/javascript">
+    const form = document.getElementById('form');
+    form.addEventListener("submit", submitHandler);
+
+    function submitHandler(e){
+      e.preventDefault();
+      $.ajax({
+        type:'POST',
+        url: "{% url 'create_customer' %}",
+        data: $("#form").serialize(),
+        dataType: 'json',
+        success: function(data) {
+            if (data.msg == 'Success'){
+              alert('Form is submitted');
+            }
+        }
+
+      })
+    }
+  </script> -->
+
+  <script type="text/javascript">
+    $('#submit').click(function(){
+    $.ajax(
+    {
+        type:'POST',
+        url: "{% url 'create_customer' %}",
+        data: $("#form").serialize(),
+        dataType: 'json',
+        success: function(data) {
+            if (data.msg == 'Success'){
+              alert('Form is submitted');
+            }
+        }
+     })
+});
+</script>
 
 {% endblock %}

@@ -21,7 +21,7 @@
         size: a4 portrait;
     }
    </style> -->
-   
+    <link rel="stylesheet" src="../../../static/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>  
 
     <style>
@@ -37,7 +37,7 @@
             }
             @frame footer_frame {           /* Another static Frame */
                 -pdf-frame-content: footer_content;
-                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+                left: 50pt; width: 512pt; top: 710pt; height: 110pt;
             }
         }
     </style>
@@ -51,72 +51,166 @@
                 
             
         <div style="text-align: center;">
-            <h3>Cosmic Connection FZE</h3>
+            <h2>Cosmic Connection FZE</h2>
             <p class="text-center font-normal">Free Zone, Djibouti <br/>
             Email: tanirna@gmail.com <br/>
             TEL.+253-77 81 55 70</p>
             
-        <h3 class="text-xl m-6 text-center font-semibold" >Proforma Invoice</h3>
+        <h2 class="text-xl m-6 text-center font-semibold" >Proforma Invoice</h2>
         </div>
                 
-        <table>
+        <table style="margin-top: 20px;">
             <tr >
-                <th style="text-align: left;"> Seller Details </th>
+                <th style="text-align: left; width: 280px;"> Seller Details </th>
                 <th style="text-align: left;"> Order No: </th>
                 <th style="text-align: left;">Proforma Invoice No:</th>
             </tr>
 
             <tr>
-                <td><p class="ml-2">{{my_order.supplier_name.supplier_name}} <br>
-                    {{my_order.supplier_name.supplier_address}}</p></td>
-                <td>
-                    <tr>
-                        <td><p class="ml-2">{{my_order.order_no}}</p></td>
-                        <th>Invoicd </th>
-                        <td><p class="ml-2">{{my_order.order_no}}</p></td>
-                        
-                        </tr></td>
+                <td><p class="ml-2">{{my_order.supplier_name.supplier_name}}</p></td>
+                <td><p class="ml-2">{{my_order.order_no}}</p></td>
                 <td><p class="ml-2"> {{my_order.ref_no}}</p></td>
+
             </tr>
-            
-            
+            <tr>
+                <td>{{my_order.supplier_name.supplier_address}}</td>
+                <th style="text-align: left;">Invoice Date</th>
+                <th style="text-align: left;">Freight</th>
+            </tr>  
+
+            <tr>
+                <td></td>
+                <td>{{my_order.date}}</td>
+                <td>{{my_order.freight}}</td>
+            </tr> 
         </table>  
          
         <hr>
+        <table style="margin-top: 20px;">
+            <tr >
+                <th style="text-align: left; width: 280px;"> Buyer Details </th>
+                <th style="text-align: left;"> Port of Loading </th>
+                <th style="text-align: left;"> Country of Origin</th>
+            </tr>
+
+            <tr>
+                <td><p class="ml-2"><p>{{my_order.customer_name.customer_name}} </br>
+                                       {{my_order.customer_name.customer_address}} </p></td>
+                <td><p class="ml-2">{{my_order.port_of_loading}} </br></p></td>
+                <td><p class="ml-2"> {{my_order.country_of_origin}} </br></p></td>
+
+            </tr>
+
+            <tr>
+                {% if my_order.notify_party %}
+                <th style="text-align: left;">Notify Party</th>
+                {% endif %}
+                <th style="text-align: left;">Port of Discharge</th>
+                <th style="text-align: left;">Final Destination</th>
+            </tr>  
+
+            <tr>
+                {% if my_order.notify_party %}
+                <td>{{my_order.notify_party}}</td>
+                {% endif %}
+                <td>{{my_order.port_of_discharge}}</td>
+                <td>{{my_order.final_destination}}</td>
+            </tr> 
+
+            <tr>
+                <th style="text-align: left;"></th>
+                <th style="text-align: left;">Means of Transport</th>
+                <th style="text-align: left;">Payment Terms</th>
+            </tr>  
+
+            <tr>
+                <td></td>
+                <td>{{my_order.transportation}}</td>
+                <td>{{my_order.payment_type}}</td>
+            </tr>
+            
+            <tr>
+                <th style="text-align: left;"></th>
+                <th style="text-align: left;"></th>
+                <th style="text-align: left;">Shipment Terms</th>
+            </tr>  
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td>{{my_order.shipment_type}}</td>
+            </tr>
+        </table> 
+            
+       <h2>Order Summary</h2>
+
+       {% if pr_items %}
+       {% for delivery in pr_items %}
+       <table >
+
+        <thead>
+        <tr> 
+            <th style="text-align: left; width: 40px;">No</th>
+            <th style="text-align: left; width: 220px;">Item</th>
+            <th style="text-align: left;">Price in USD</th>
+            <th style="text-align: left;">Quantity</th>
+            <th style="text-align: left; ">Unit of </br> Measurement</th>
+            <th style="text-align: left;">Total</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr>
+            <td>0{{forloop.counter}}</td>
+            <td> <p>{{delivery.item_name}} {{delivery.description}} <br>
+                 HS-code: {{delivery.hs_code}}</p>
+            </td>
+            <td>${{ delivery.price }}</td>
+            <td>{{ delivery.quantity }}</td>
+            <td>{{ delivery.measurement }}</td>
+            <td>${{ delivery.total_price }}</td>
+            
+        </tr>
+        </tbody>
+       </table>
+       
+       {% endfor %}
+       {% endif %}
+
+       <div id="footer_content">
+        
+        
+       <table>
+            <tr style="margin-bottom: 25px;">
+                <th style="text-align: left; width: 300px;" ><h2>Payment must be remitted to:</h2></th>
+                <th style="text-align: left;"><h2>Conditions:</h2></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td> <p> <b>Beneficiary: </b> Cosmic Connection FZE </br> 
+                <b>Beneficiary Bank details: </b></br> 
+                BANK NAME: EXIM BANK</br> 
+                BANK ADDRESS: EXIM HOUSE - 13, PLACE</br> 
+                LAGARDE - P.0.BOX 4455, DJIBOUTI </br> 
+                SWIFT: EXTNDJJD </br> 
+                <b>Account Number: </b> 0040000193 </br> 
+                <b>IBAN no: </b> 000120000040000193 </br>
+                </p></td>
+
+                <td><p>1. Partial Shipment to be allowed </br>
+                    2. Transshipment to be allowed </br>
+                </p> </br> </br> </br> </br> </br> </td>
+
+                <td>
+                    <img  alt="" src="/static/stamp.jpg" height="154px" width="154px" style="margin-top: 30px;"> <br>
+                    <img  alt="" src="/static/sign.jpg" height="44px" width="134px">
+                </td>
+                
+            </tr>
+       </table>
+    </div>
     
-        <table>
-            <tr>
-     
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-     
-                <td>Hosting Plan</td>
-                <td>$7.99</td>
-                <td>2</td>
-                <td>$15.98</td>
-            </tr>
-            <tr>
-     
-                <td>consultation </td>
-                <td>$225</td>
-                <td>1</td>
-                <td>$225</td>
-            </tr>
-            <tr>
-     
-                <td>Service Hours</td>
-                <td>$189</td>
-                <td>45.7</td>
-                <td>$8637.30</td>
-            </tr>
-        </table>
-    
-        <hr>
-    
-        <p><strong>Total: $8878.28</strong></p>
+       
     </body>
     </html>

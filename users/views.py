@@ -15,26 +15,35 @@ from django.contrib import messages
 def user_base(request):
     return render(request,'user_base.html')
 
-def create_customer(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        form = CustomerForm(request.POST)
-        if form.errors:
-            print(form.errors)
-        if customer_profile.objects.filter(email = email). exists():
-            messages.error(request, 'Email Already exists')
-            return redirect('create_customer')
-        if form.is_valid():
-            try:
-                form.save()
-                messages.success(request, 'Successfully Submitted')
-            except Exception as e:
-                print(f"Error: {e}")
-            return redirect('create_customer')
-    else:
+# def create_customer(request):
+#     if request.method == 'POST':
+#         email = request.POST['email']
+#         form = CustomerForm(request.POST)
+#         if form.errors:
+#             print(form.errors)
+#         if customer_profile.objects.filter(email = email). exists():
+#             messages.error(request, 'Email Already exists')
+#             return redirect('create_customer')
+#         if form.is_valid():
+#             try:
+#                 form.save()
+#                 messages.success(request, 'Successfully Submitted')
+#             except Exception as e:
+#                 print(f"Error: {e}")
+#             return redirect('create_customer')
+#     else:
         
-        form = CustomerForm()
-    return render(request, 'create_customer.html', {'form': form })
+#         form = CustomerForm()
+#     return render(request, 'create_customer.html', {'form': form })
+
+def create_customer(request):
+    form = CustomerForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'msg': 'Success'})
+    
+    return render(request, 'create_customer.html', {'form': form})
 
 def create_supplier(request):
     if request.method == 'POST':
