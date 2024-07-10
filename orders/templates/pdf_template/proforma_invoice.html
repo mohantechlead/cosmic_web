@@ -58,7 +58,9 @@
             
         <h2 class="text-xl m-6 text-center font-semibold" >Proforma Invoice</h2>
         </div>
-                
+        
+        <div id="content_frame">
+    
         <table style="margin-top: 20px;">
             <tr >
                 <th style="text-align: left; width: 280px;"> Seller Details </th>
@@ -144,8 +146,9 @@
             
        <h2>Order Summary</h2>
 
-       {% if pr_items %}
-       {% for delivery in pr_items %}
+      
+        {% if pr_items %}
+       
        <table >
 
         <thead>
@@ -158,9 +161,10 @@
             <th style="text-align: left;">Total</th>
         </tr>
         </thead>
-        
+        {% for delivery in pr_items %}
         <tbody>
-        <tr>
+            
+        <tr style="padding-bottom: 20px;">
             <td>0{{forloop.counter}}</td>
             <td> <p>{{delivery.item_name}} {{delivery.description}} <br>
                  HS-code: {{delivery.hs_code}}</p>
@@ -172,10 +176,13 @@
             
         </tr>
         </tbody>
-       </table>
+      
        
        {% endfor %}
+    </table>
        {% endif %}
+
+    </div>
 
        <div id="footer_content">
         

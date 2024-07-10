@@ -3,11 +3,12 @@
 {% block content %}
 
 
-
+<h5></h5>
 <form class="w-full max-w-3xl" method="post"  id="form">
     <div class="mb-10 text-3xl font-semibold text-center">
         <h1>Create Customer</h1>
     </div>
+    
     {% csrf_token %}
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -102,9 +103,10 @@
         data: $("#form").serialize(),
         dataType: 'json',
         success: function(data) {
-            if (data.msg == 'Success'){
-              alert('Form is submitted');
-            }
+            // if (data.msg == 'success'){
+              // $("#form").trigger('reset');
+              $("h5").html(data);
+            // }
         }
      })
 });

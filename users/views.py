@@ -40,8 +40,18 @@ def create_customer(request):
     form = CustomerForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-            return JsonResponse({'msg': 'Success'})
+            try:
+                form.save()
+                success = 'Profile Created Successfully'
+                # return JsonResponse({'msg': 'Success'})
+                return HttpResponse(success)
+            except Exception as e:
+               print(f"Error: {e}")
+               return HttpResponse(e)
+        # if form.errors:
+        #      print(form.errors)
+        #      error = form.errors
+        #      return HttpResponse(error)
     
     return render(request, 'create_customer.html', {'form': form})
 
