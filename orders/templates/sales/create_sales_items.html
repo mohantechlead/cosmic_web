@@ -1,0 +1,19 @@
+<form method="post" action="{% url 'create_sale_items' %}" id="form2">
+                            
+    {% csrf_token %}
+
+        {{ formset.management_form }}
+
+       <div id="form-lists">
+          
+        {% for form in formset %}
+                <div  class="max-w-sm item-list">              
+                    {{form.as_p}}
+                </div>
+        {% endfor %}
+    </div>
+                
+
+        <div id="empty-form" class="hidden"> {{ formset.empty_form.as_p}}</div>
+
+</form>

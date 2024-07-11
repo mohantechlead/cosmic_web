@@ -43,13 +43,13 @@ def create_customer(request):
             try:
                 form.save()
                 success = 'Profile Created Successfully'
-                # return JsonResponse({'msg': 'Success'})
-                return HttpResponse(success)
+                # return JsonResponse({'msg': 'success'})
+                return render(request, "create_customer.html")
             except Exception as e:
                print(f"Error: {e}")
                return HttpResponse(e)
-        # if form.errors:
-        #      print(form.errors)
+        if form.errors:
+             print(form.errors)
         #      error = form.errors
         #      return HttpResponse(error)
     
