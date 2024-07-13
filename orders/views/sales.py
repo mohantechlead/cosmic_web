@@ -104,7 +104,7 @@ def create_sale_items(request):
                 # 'message':success_message,
                 'code':code
             }
-            return render(request, 'sales/create_sales.html', context)
+            return render(request, 'sales/create_sales_items.html', context)
     else:
        
         formset = formset_factory(OrderItemForm, extra=1)
@@ -113,7 +113,7 @@ def create_sale_items(request):
     context = {
         'formset': formset,
     }
-    return render(request, 'sales/create_sales.html', context)
+    return render(request, 'sales/create_sales_items.html', context)
 
 def display_sales(request):
     if request.method == 'GET':

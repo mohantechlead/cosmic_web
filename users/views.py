@@ -48,7 +48,7 @@ def create_customer(request):
             except Exception as e:
                print(f"Error: {e}")
                return HttpResponse(e)
-        if form.errors:
+        if form.errors == 'customer_name':
              print(form.errors)
         #      error = form.errors
         #      return HttpResponse(error)

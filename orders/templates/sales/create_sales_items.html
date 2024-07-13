@@ -1,3 +1,4 @@
+<script src="../../../static/js/orders/create_sales.js"></script>
 <form method="post" action="{% url 'create_sale_items' %}" id="form2">
                             
     {% csrf_token %}
@@ -15,5 +16,8 @@
                 
 
         <div id="empty-form" class="hidden"> {{ formset.empty_form.as_p}}</div>
+        
 
 </form>
+
+
