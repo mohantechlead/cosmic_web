@@ -6,7 +6,7 @@
     <div class="mb-10 text-3xl font-semibold text-center">
         <h1>Create Order</h1>
     </div>
-    <form class="ml-8" id="form1" action="{% url 'create_sales' %}" method="post">
+    <form class="ml-8" id="form1" method="post" action="{% url 'create_sales' %}">
         {% csrf_token %}
         <div class="grid gap-4 mb-8 md:grid-cols-3">
             <div>

@@ -1,0 +1,26 @@
+     
+<tbody hx-target="closest tr" hx-swap="outerHTML swap:1s"
+            hx-confirm="Are you sure you wish to delete customer {{customer.customer_name}}">  
+           
+           
+        <tr class="text-black" >
+            {% for customer in my_customer %}
+            <td class="px-6 py-4"><a href="/cosmic/display_customer_profile/{{customer.customer_name}}">{{ customer.customer_name }}</a></td>
+            <td class="px-6 py-4"><a href="#">{{ customer.phone_number }}</a></td>
+            <td class="px-6 py-4"><a href="#" >{{ customer.email }}</a></td>
+            <td class="px-6 py-4"><a href="#">{{ customer.date }}</a></td> 
+            <td class="px-6 py-4">
+                <button type="submit"
+                class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+                 >Edit</button>
+
+                <button type="submit"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                hx-delete= "{% url 'delete_customer' customer.customer_name %}">Delete</button>
+            
+            </td>
+                {% endfor %} 
+        </tr>
+
+            
+</tbody>

@@ -1,0 +1,70 @@
+{% extends 'user_base.html'%}
+
+{% block content %}
+
+<div class="mb-10 text-3xl font-semibold text-center">
+    <h1>Items Display</h1> </div>
+
+    <form class="w-full max-w-3xl" method="post" >
+
+        {% csrf_token %}
+
+        <div class="grid gap-4 mb-8 md:grid-cols-3" > 
+            <div>
+                <input type="text" id="item_name" name="item_name" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600
+                  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Enter Item Name" />
+            </div>
+            <div>
+                <input type="text" id="hs_code" name="hs_code" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600
+                  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Enter HS Code" />
+            </div>
+            <div>
+            <button  id="create" 
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-800 rounded shadow w-64"
+            hx-post="{% url 'display_items' %}"
+            hx-target="#item_display" >
+                    Create
+            </button>
+            </div> 
+        </div> 
+      
+
+    </form>
+
+    <div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Item Name</td>
+                    <td>HS Code</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if items %}
+            {%for item in items%}
+                <tr>
+                    <td>{{item.item_name}}</td>
+                    <td>{{item.hs_code}}</td>
+                    <td><button>Edit</button></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% endif %}
+        </table>
+
+        
+
+        
+
+    </div>
+
+
+
+{% endblock %}

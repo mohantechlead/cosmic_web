@@ -15,66 +15,45 @@ from django.contrib import messages
 def user_base(request):
     return render(request,'user_base.html')
 
-# def create_customer(request):
-#     if request.method == 'POST':
-#         email = request.POST['email']
-#         form = CustomerForm(request.POST)
-#         if form.errors:
-#             print(form.errors)
-#         if customer_profile.objects.filter(email = email). exists():
-#             messages.error(request, 'Email Already exists')
-#             return redirect('create_customer')
-#         if form.is_valid():
-#             try:
-#                 form.save()
-#                 messages.success(request, 'Successfully Submitted')
-#             except Exception as e:
-#                 print(f"Error: {e}")
-#             return redirect('create_customer')
-#     else:
-        
-#         form = CustomerForm()
-#     return render(request, 'create_customer.html', {'form': form })
-
 def create_customer(request):
     form = CustomerForm(request.POST)
     if request.method == 'POST':
-        if form.is_valid():
-            try:
+        customer_name = request.POST['customer_name']
+        if customer_profile.objects.filter(customer_name__icontains= customer_name).exists():
+                messages.error(request, 'Customer Name already exists')
+                return redirect('create_customer')
+        else:
+              if form.is_valid:
                 form.save()
-                success = 'Profile Created Successfully'
-                # return JsonResponse({'msg': 'success'})
+                messages.success(request, 'Profile Created Successfully')
                 return render(request, "create_customer.html")
-            except Exception as e:
-               print(f"Error: {e}")
-               return HttpResponse(e)
-        if form.errors == 'customer_name':
-             print(form.errors)
-        #      error = form.errors
-        #      return HttpResponse(error)
+         
     
     return render(request, 'create_customer.html', {'form': form})
 
+def delete_customer(request, customer_name): 
+    # request.customer_profile.customer_name.remove(customer_name)
+    
+    customer = customer_profile.objects.filter(customer_name = customer_name)
+    customer.delete()
+    
+    return render(request, 'customer_list.html' ,{'customer': customer})
+
 def create_supplier(request):
+    form = SupplierForm(request.POST)
     if request.method == 'POST':
-        email = request.POST['email']
-        form = SupplierForm(request.POST)
-        if form.errors:
-            print(form.errors)
-        if customer_profile.objects.filter(email = email). exists():
-            messages.error(request, 'Email Already exists')
-            return redirect('create_customer')
-        if form.is_valid():
-            try:
+        supplier_name = request.POST['supplier_name']
+        if supplier_profile.objects.filter(supplier_name__icontains= supplier_name).exists():
+                messages.error(request, 'Supplier Name already exists')
+                return redirect('create_supplier')
+        else:
+              if form.is_valid:
                 form.save()
-                messages.success(request, 'Successfully Submitted')
-            except Exception as e:
-                print(f"Error: {e}")
-            return redirect('create_customer')
-    else:
-        
-        form = SupplierForm()
-    return render(request, 'create_supplier.html', {'form': form })
+                messages.success(request, 'Profile Created Successfully')
+                return render(request, "create_supplier.html")
+         
+    
+    return render(request, 'create_supplier.html', {'form': form})
 
 def display_customer(request):
     if request.method == 'GET':

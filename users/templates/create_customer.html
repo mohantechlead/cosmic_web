@@ -8,7 +8,18 @@
     <div class="mb-10 text-3xl font-semibold text-center">
         <h1>Create Customer</h1>
     </div>
-    
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">{{message}}</div>
+    {% endif %}
+    {% if message.tags == "success" %}
+    <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-green-800">{{message}}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
     {% csrf_token %}
     <div class="flex flex-wrap -mx-3 mb-6">
       <span id="success"></span>

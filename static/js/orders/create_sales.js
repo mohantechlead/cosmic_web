@@ -80,7 +80,7 @@ dropdown.addEventListener("change", function() {
 });
     };
 
-    addMoreBtn.addEventListener('click', add_new_form);
+    // addMoreBtn.addEventListener('click', add_new_form);
     submitButton.addEventListener('click', function (event) {
         event.preventDefault();
         calculateTotalPrice();
@@ -139,7 +139,7 @@ submitButton.addEventListener('click', function (event) {
 
         // Serialize form data
         const formData1 = new FormData(form1);
-        const formData2 = new FormData(form2);
+        // const formData2 = new FormData(form2);
 
         const prNoValue = formData1.get('order_no');
 
@@ -150,7 +150,7 @@ submitButton.addEventListener('click', function (event) {
         const amount = 1
        
         console.log(prNoValue)
-        formData2.append('order_no', prNoValue)
+        // formData2.append('order_no', prNoValue)
 
         // Use fetch to submit both forms asynchronously
         fetch(form1.action, {

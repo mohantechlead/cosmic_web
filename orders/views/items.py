@@ -24,7 +24,7 @@ def display_items(request):
         'form':form,
     }
 
-    return render(request,'items_display.html',context)
+    return render(request,'items/items_display.html',context)
 
 def get_item_data(request, item_id):
     print(item_id,"item")

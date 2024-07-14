@@ -8,5 +8,6 @@ urlpatterns=[
     path("create_supplier",views.create_supplier, name="create_supplier"),
     path("display_customer",views.display_customer, name="display_customer"),
     path("display_supplier",views.display_supplier, name="display_supplier"),
+    path("delete_customer/<str:customer_name>", views.delete_customer, name="delete_customer"),
 ]
 
