@@ -139,7 +139,8 @@ submitButton.addEventListener('click', function (event) {
 
         // Serialize form data
         const formData1 = new FormData(form1);
-        // const formData2 = new FormData(form2);
+        // const formData2 = new FormData($('#form2'));
+        const formData2 = new FormData(form2);
 
         const prNoValue = formData1.get('order_no');
 
@@ -150,7 +151,7 @@ submitButton.addEventListener('click', function (event) {
         const amount = 1
        
         console.log(prNoValue)
-        // formData2.append('order_no', prNoValue)
+        formData2.append('order_no', prNoValue)
 
         // Use fetch to submit both forms asynchronously
         fetch(form1.action, {
@@ -202,9 +203,9 @@ if (response && !response.ok) {
     window.location.reload();
 }
 })
-.catch(error => {
-console.error('Error:', error);
-});
+// .catch(error => {
+// console.error('Error:', error);
+// });
     });
     function updateTotalPrice(form) {
         var quantity = parseFloat(form.find('.quantity').val());

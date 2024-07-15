@@ -1,0 +1,11 @@
+<tbody  class="text-black">
+    {% if items %}
+    {%for item in items%}
+        <tr>
+            <td class="px-6 py-4">{{item.item_name}}</td>
+            <td class="px-6 py-4">{{item.hs_code}}</td>
+            <td class="px-6 py-4"><button>Edit</button></td>
+        </tr>
+</tbody>
+    {% endfor %}
+    {% endif %}

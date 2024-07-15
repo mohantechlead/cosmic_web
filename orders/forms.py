@@ -3,6 +3,8 @@ from .models import *
 from users.models import *
 from users.forms import *
 
+# ORDER FORM
+
 class CosmicOrderForm(forms.ModelForm):
     
     order_no = forms.CharField(widget=forms.TextInput(attrs={'class': 'order_no form-control'}))
@@ -46,3 +48,25 @@ class CosmicItemForm(forms.ModelForm):
    
         model = item_codes
         fields = ['item_name','hs_code']
+
+# SHIPPING FORM
+
+class ShippingItemForm(forms.ModelForm):
+   
+    measurement = forms.CharField(widget=forms.TextInput(attrs={'class': 'measurement form-control'}), required=False)
+    quantity = forms.FloatField(widget=forms.TextInput(attrs={'class': 'quantity form-control' }))
+    price = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'price form-control'}))
+
+    item_name = forms.ModelChoiceField(
+        queryset=item_codes.objects.all(),
+        empty_label="Item Name", 
+        widget=forms.Select(attrs={'class': 'item_name form-control'}),
+        to_field_name='item_name'
+    )
+    hs_code = forms.CharField(label='HS CODE', required=False, widget=forms.TextInput(attrs={'class': 'hs_codes form-control'}, ),  )
+    
+    
+    class Meta:
+   
+        model = shipping_item
+        fields = [ 'item_name','hs_code','price','quantity','measurement']

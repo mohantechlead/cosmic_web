@@ -175,36 +175,39 @@
 
             <h1 class="mt-6 mb-4 text-lg font-semibold ml-8 mb-10 text-center">Add items below</h1>
 
-           
+            
+                <form method="post" action="{% url 'create_sale_items' %}" >
+                            
+                    {% csrf_token %}
+                
+                    <div class="container grid gap-6 mb-8 md:grid-cols-3 ml-8" id="form2" >        
 
-            <div class="container grid gap-6 mb-8 md:grid-cols-3 ml-8" id="form2">    
-                 {% include 'sales/create_sales_items.html' %}
-            </div>      
+                 {% include 'shipping/create_shipping_items.html' %}
+
+                </div> 
+
+                </form>
+                
                
-    
-                <!-- <div>
-                    <button id="add-more" class="bg-slate-400 text-white font-bold py-2 px-4 rounded " type="button">Add Item</button>
-                </div> -->
-
             <div class="mb-8">
                 <button type="button" 
                 hx-get="{% url 'create_sale_items' %}"
                 hx-target="#form2"
                 hx-swap="beforeend"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-                       font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600
+                class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
+                       font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600
                     dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Item</button>
             </div>
 
-        
+            <button type="submit" id="calculate_total" 
+            class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none mb-8
+             focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800">
+            Calculate Total</button> <br>
 
-            
-
-
-     
       
         <button type="submit" id="submits" 
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
+               text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Submit</button>
     
 

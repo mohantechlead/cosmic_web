@@ -1,0 +1,125 @@
+{% extends 'user_base.html'%}
+
+{% block content %}
+
+<div class="w-full max-w-7xl">
+    <div class="mb-10 text-3xl font-semibold text-center">
+        <h1>Add Shipping Details</h1>
+    </div>
+    <form class="ml-8" id="form1" method="post" action="{% url 'create_sales' %}">
+        {% csrf_token %}
+        <div class="grid gap-4 mb-8 md:grid-cols-3">
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Order Number</label>
+                <input type="text" id="order_no" name="order_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+            </div>
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Invoice Date</label>
+                <input type="text" datepicker datepicker-buttons datepicker-autoselect-today id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 ">Invoice Number</label>
+                <input type="text" id="ref_no" name="ref_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+            </div> 
+        </div> 
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 ">Waybill Number</label>
+                <input type="text" id="ref_no" name="ref_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 ">Container Number</label>
+                <input type="text" id="ref_no" name="ref_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+
+            </div>
+        </div>
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 ">Customer Order Number</label>
+                <input type="text" id="ref_no" name="ref_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+
+            </div>
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Vessel</label>
+                <input type="text" id="ref_no" name="ref_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+            </div>
+        </div>
+           
+      
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Invoice Remark</label>
+                <textarea style="width: 250px; height: 150px "></textarea>
+            </div>
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Waybill Remark</label>
+                <textarea style="width: 250px; height: 150px "></textarea>
+            </div> 
+           
+        </div>
+
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Packing List Remark</label>
+                <textarea style="width: 250px; height: 150px "></textarea>
+            </div>
+            <div>
+                <label  class="block mb-2 text-sm font-medium text-gray-900 ">Bill of Lading Remark</label>
+                <textarea style="width: 250px; height: 150px "></textarea>
+            </div> 
+           
+        </div>
+
+       
+
+       
+            
+          
+        </form>
+
+            <h1 class="mt-6 mb-4 text-lg font-semibold ml-8 mb-10 text-center">Add items below</h1>
+
+            
+                <form method="post" action="{% url 'create_sale_items' %}" >
+                            
+                    {% csrf_token %}
+                
+                    <div class="container grid gap-6 mb-8 md:grid-cols-3 ml-8" id="form2" >        
+
+                 {% include 'sales/create_sales_items.html' %}
+
+                </div> 
+
+                </form>
+                
+               
+            <div class="mb-8">
+                <button type="button" 
+                hx-get="{% url 'create_sale_items' %}"
+                hx-target="#form2"
+                hx-swap="beforeend"
+                class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
+                       font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600
+                    dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Item</button>
+            </div>
+
+            <button type="submit" id="calculate_total" 
+            class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none mb-8
+             focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800">
+            Calculate Total</button> <br>
+
+      
+        <button type="submit" id="submits" 
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
+               text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit</button>
+    
+
+</div>
+
+
+<script src="../../../static/js/orders/create_sales.js"></script>
+
+
+{% endblock %}

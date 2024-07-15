@@ -5,7 +5,7 @@ from django.forms import formset_factory
 from orders.forms import *
 from users.forms import *
 
-def display_items(request):
+def create_item(request):
     if request.method == 'POST':
         form = CosmicItemForm(request.POST)
 
@@ -14,7 +14,7 @@ def display_items(request):
 
         if form.is_valid():
             form.save()
-            return redirect('display_items')
+            return render(request, 'items/display_item.html')
     
     form = CosmicItemForm()
     items = item_codes.objects.all()
@@ -24,7 +24,7 @@ def display_items(request):
         'form':form,
     }
 
-    return render(request,'items/items_display.html',context)
+    return render(request,'items/create_item.html',context)
 
 def get_item_data(request, item_id):
     print(item_id,"item")

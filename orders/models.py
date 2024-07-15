@@ -39,7 +39,18 @@ class order_item(models.Model):
     quantity =  models.FloatField(blank=True, null=True)
     measurement = models.TextField(blank=True, null=True)
 
-
+class shipping_item(models.Model):
+    order_no = models.ForeignKey('cosmic_order', on_delete=models.CASCADE, db_column='order_no',blank=True, null=True)
+    id_numeric = models.AutoField(primary_key=True)
+    price = models.FloatField(blank=True, null=True)
+    item_name = models.TextField(blank=True, null=True)
+    quantity =  models.FloatField(blank=True, null=True)
+    total_price = models.FloatField(blank=True, null=True)
+    measurement = models.TextField(blank=True, null=True)
+    bags = models.FloatField(blank=True, null=True)
+    net_weight = models.FloatField(blank=True, null=True)
+    gross_weight = models.FloatField(blank=True, null=True)
+    
 class item_codes(models.Model):
     hs_code = models.TextField(blank=True, null=True)
     item_name = models.TextField(blank=True, null=True)

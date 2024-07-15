@@ -5,7 +5,7 @@
 <div class="mb-10 text-3xl font-semibold text-center">
     <h1>Items Display</h1> </div>
 
-    <form class="w-full max-w-3xl" method="post" >
+    <form class="w-full max-w-3xl" method="post">
 
         {% csrf_token %}
 
@@ -25,8 +25,8 @@
             <div>
             <button  id="create" 
             class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-800 rounded shadow w-64"
-            hx-post="{% url 'display_items' %}"
-            hx-target="#item_display" >
+            hx-post="{% url 'create_item' %}" hx-swap="innerHTML" hx-target="#display_item" 
+            >
                     Create
             </button>
             </div> 
@@ -35,33 +35,30 @@
 
     </form>
 
-    <div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-w-3xl" >
 
-        <table>
-            <thead>
-                <tr>
-                    <td>Item Name</td>
-                    <td>HS Code</td>
-                    <td>Action</td>
-                </tr>
-            </thead>
 
-            <tbody>
-            {% if items %}
-            {%for item in items%}
-                <tr>
-                    <td>{{item.item_name}}</td>
-                    <td>{{item.hs_code}}</td>
-                    <td><button>Edit</button></td>
-                </tr>
-            </tbody>
-            {% endfor %}
-            {% endif %}
-        </table>
-
-        
-
-        
+    <table class= " w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" >
+        <thead  class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <td  scope="col" class="px-6 py-3">Item Name</td>
+                <td  scope="col" class="px-6 py-3">HS Code</td>
+                <td  scope="col" class="px-6 py-3">Action</td>
+            </tr>
+        </thead>
+    
+        <tbody  class="text-black" id="display_item" >
+        {% if items %}
+        {%for item in items%}
+            <tr>
+                <td class="px-6 py-4">{{item.item_name}}</td>
+                <td class="px-6 py-4">{{item.hs_code}}</td>
+                <td class="px-6 py-4"><button>Edit</button></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        {% endif %}
+    </table>
 
     </div>
 
