@@ -26,8 +26,8 @@ def create_sales(request):
             supplier = supplier_profile.objects.get(supplier_name=suppliers_name)
             form.instance.customer_name = customer
             form.instance.supplier_name = supplier
-            form.save()
-            return redirect('create_sales')  # Redirect to the list of purchases or any other desired view
+            # form.save()
+            return redirect('create_sales')  
         else:
             print(form.data,"nval")
             errors = dict(form.errors.items())
@@ -88,7 +88,6 @@ def create_sale_items(request):
                 pr.total_quantity = final_quantity
                 pr.remaining = final_quantity
                 pr.save()
-                #message.success("successful!")
             else:
                 print(formset.data,"nval")
                 errors = dict(formset.errors.items())
@@ -101,7 +100,6 @@ def create_sale_items(request):
             context = {
                 'pr_form': pr_form,
                 'formset': formset,
-                # 'message':success_message,
                 'code':code
             }
             return render(request, 'sales/create_sales_items.html', context)

@@ -140,7 +140,8 @@ submitButton.addEventListener('click', function (event) {
         // Serialize form data
         const formData1 = new FormData(form1);
         // const formData2 = new FormData($('#form2'));
-        const formData2 = new FormData(form2);
+        const formData2 = new FormData();
+        formData2.append('form2', form2);
 
         const prNoValue = formData1.get('order_no');
 
