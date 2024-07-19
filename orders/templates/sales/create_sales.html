@@ -171,22 +171,43 @@
             
             </div>
 
-        </form>
-
             <h1 class="mt-6 mb-4 text-lg font-semibold ml-8 mb-10 text-center">Add items below</h1>
 
+            <div class="container grid gap-6 mb-8 md:grid-cols-3 ml-8" id="form2" >
+
+            <div id="form-lists">
+
+                {{ formset.management_form }}
+                      
+                    {% for form in formset %}
+                            <div  class="max-w-sm item-list">              
+                                {{form.as_p}}
+                            </div>
+                    {% endfor %}
+            </div>
+                            
             
-                <form method="post" action="{% url 'create_sale_items' %}" >
+            <div id="empty-form" class="hidden"> {{ formset.empty_form.as_p}}</div>
+
+            </div>
+                    
+
+        </form>
+
+            
+
+            
+                <!-- <form method="post" action="{% url 'create_sale_items' %}" >
                             
                     {% csrf_token %}
                 
-                    <div class="container grid gap-6 mb-8 md:grid-cols-3 ml-8" id="form2" >        
+                           
 
                  {% include 'shipping/create_shipping_items.html' %}
 
                 </div> 
 
-                </form>
+                </form> -->
                 
                
             <div class="mb-8">
